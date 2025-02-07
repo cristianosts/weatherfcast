@@ -1,4 +1,5 @@
 let busca = document.querySelector('.busca') as HTMLInputElement 
+let resultado = document.querySelector('.resultado') as HTMLInputElement
 
 busca.addEventListener('submit', async (event) => {
     event.preventDefault()
@@ -8,7 +9,8 @@ busca.addEventListener('submit', async (event) => {
     input.value
 
     if(input.value !== '') {
-        showWarning('Carregando...')
+        clearInfo()
+        showWarning('Loading...')
 
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(input.value)}&appid=e432e9bd3d56758a895f48e9b8acdd49&units=metric&lang=pt_br`
 
@@ -25,17 +27,18 @@ busca.addEventListener('submit', async (event) => {
                 windAngle: json.wind.deg
             })
         } else {
-            showWarning('Não encontramos esta localização!!!')
+            clearInfo()
+
+            showWarning("We couldn't find this location!")
         }
+    } else {
+        clearInfo()
     }
 })
 
 function showInfo(json: any) {
-   showWarning('')
-
-   let resultado = document.querySelector('.resultado') as HTMLInputElement
-   resultado.classList.remove('hidden')
-   resultado.classList.toggle('flex-col')
+  
+    showWarning('')
 
    let titulo = document.querySelector('.titulo') as HTMLInputElement
    titulo.innerHTML = `${json.name}, ${json.country}`
@@ -43,12 +46,22 @@ function showInfo(json: any) {
    tempInfo.innerHTML = `${json.temp} <sup>°C</sup>`
    let ventoInfo = document.querySelector('.ventoInfo') as HTMLInputElement 
    ventoInfo.innerHTML = `${json.windSpeed} <span>km/h</span>`
-
+   
    let img = document.querySelector('.temp img') as HTMLInputElement 
-   img.setAttribute('src', `http://openweathermap.org/img/wn/${json.tempIcon}@2x.png`)
+   img.setAttribute('src', `http://openweathermap.org/img/wn/${json.tempIcon}.png`)
+   
+   let ventoPonto = document.querySelector('.ventoPonto') as HTMLInputElement
+   ventoPonto.style.transform = `rotate(${json.windAngle -90}deg)`
 
-    let ventoPonto = document.querySelector('.ventoPonto') as HTMLInputElement
-    ventoPonto.style.transform = `rotate(${json.windAngle -90}deg)`
+   resultado.classList.remove('hidden')
+   resultado.classList.toggle('flex-col')
+}
+
+function clearInfo() {
+    showWarning('')
+
+    resultado.classList.remove('flex-col')
+    resultado.classList.add('hidden')
 }
 
 function showWarning(msg: string) {

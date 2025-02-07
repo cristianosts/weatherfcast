@@ -9,11 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 let busca = document.querySelector('.busca');
+let resultado = document.querySelector('.resultado');
 busca.addEventListener('submit', (event) => __awaiter(void 0, void 0, void 0, function* () {
     event.preventDefault();
     let input = document.querySelector('#searchInput');
     input.value;
     if (input.value !== '') {
+        clearInfo();
         showWarning('Carregando...');
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(input.value)}&appid=e432e9bd3d56758a895f48e9b8acdd49&units=metric&lang=pt_br`;
         let results = yield fetch(url);
@@ -29,15 +31,16 @@ busca.addEventListener('submit', (event) => __awaiter(void 0, void 0, void 0, fu
             });
         }
         else {
+            clearInfo();
             showWarning('Não encontramos esta localização!!!');
         }
+    }
+    else {
+        clearInfo();
     }
 }));
 function showInfo(json) {
     showWarning('');
-    let resultado = document.querySelector('.resultado');
-    resultado.classList.remove('hidden');
-    resultado.classList.toggle('flex-col');
     let titulo = document.querySelector('.titulo');
     titulo.innerHTML = `${json.name}, ${json.country}`;
     let tempInfo = document.querySelector('.tempInfo');
@@ -48,6 +51,13 @@ function showInfo(json) {
     img.setAttribute('src', `http://openweathermap.org/img/wn/${json.tempIcon}.png`);
     let ventoPonto = document.querySelector('.ventoPonto');
     ventoPonto.style.transform = `rotate(${json.windAngle - 90}deg)`;
+    resultado.classList.remove('hidden');
+    resultado.classList.toggle('flex-col');
+}
+function clearInfo() {
+    showWarning('');
+    resultado.classList.remove('flex-col');
+    resultado.classList.add('hidden');
 }
 function showWarning(msg) {
     let aviso = document.querySelector('.aviso');

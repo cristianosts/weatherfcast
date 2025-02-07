@@ -7,35 +7,35 @@
     <link rel="stylesheet" href="/src/style.css">
 </head>
 <body class="container mx-auto">
-    <h1 class="text-5xl text-center m-5 ">Weather</h1>
+    <h1 class="text-5xl text-center mt-16 ">Weather</h1>
 
-    <form class="busca flex justify-center gap-1 m-10">
-        <input class="border-4 " type="search" id="searchInput" />
-        <button class="w-20 border-4 rounded">Buscar</button>
+    <form class="busca flex justify-center gap-1 mt-20 mb-8 md:m-10">
+        <input class="border-4 p-1 text-lg outline-none rounded-lg" type="search" id="searchInput" placeholder="Enter the place"/>
+        <button class="w-20 border-4 rounded hover:bg-gray-200 font-medium ">Get</button>
     </form>
 
     <div class="resultado hidden w-72 justify-center mx-auto border-4 rounded-xl items-center md:w-1/2">
-        <div class="titulo font-bold text-center text-xl">--</div>
+        <div class="titulo font-bold text-center text-xl mt-5">--</div>
 
         <div class="info text-center md:grid grid-cols-2 gap-4">
             <div class="temp flex flex-col items-center">
                 <div class="tempTitulo font-medium m-2">Temperature</div>
                 <div class="tempInfo text-4xl">-- <sup>ºC</sup></div>
-                <img class="" src="http://openweathermap.org/img/wn/10d@2x.png" />
+                <img class="w-24 h-24" src="http://openweathermap.org/img/wn/10d@2x.png" />
             </div>
             <div class="vento flex flex-col items-center ">
                 <div class="ventoTitulo font-medium">Wind</div>
                 <div class="ventoInfo m-2 font-medium text-2xl">-- <span>km/h</span></div>
-                <div class="ventoArea w-12 h-12 m-4 border border-black rounded-full pl-6 pt-6">
+                <div class="ventoArea w-12 h-12 m-4 border border-black rounded-full pl-6 pt-6 md:mt-8">
                     <div class="ventoPonto w-4 h-px bg-black origin-left" style="transform: rotate(0deg)"></div>
                 </div>
             </div>
         </div>
     </div>  
 
-    <div class="aviso"></div>
+    <div class="aviso text-center text-xl"></div>
 
-    <footer class="bg-blue-400 flex justify-center m-40">Created by Cristiano</footer>
+    <footer class="text-center mt-40 md:m-40 italic">Created by Cristiano</footer>
 
     <script src="/src/script.js"></script>
 </body>
