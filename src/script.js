@@ -16,7 +16,7 @@ busca.addEventListener('submit', (event) => __awaiter(void 0, void 0, void 0, fu
     input.value;
     if (input.value !== '') {
         clearInfo();
-        showWarning('Carregando...');
+        showWarning('Loading...');
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(input.value)}&appid=e432e9bd3d56758a895f48e9b8acdd49&units=metric&lang=pt_br`;
         let results = yield fetch(url);
         let json = yield results.json();
@@ -32,7 +32,7 @@ busca.addEventListener('submit', (event) => __awaiter(void 0, void 0, void 0, fu
         }
         else {
             clearInfo();
-            showWarning('Não encontramos esta localização!!!');
+            showWarning("We couldn't find this location!");
         }
     }
     else {
