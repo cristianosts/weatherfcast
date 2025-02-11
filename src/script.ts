@@ -1,5 +1,14 @@
+interface WeatherInfo {
+    name: string;
+    country: string;
+    temp: number;
+    tempIcon: string;
+    windSpeed: number;
+    windAngle: number;
+}
+
 let busca = document.querySelector('.busca') as HTMLInputElement 
-let resultado = document.querySelector('.resultado') as HTMLInputElement
+let resultado = document.querySelector('.resultado') as HTMLElement
 
 busca.addEventListener('submit', async (event) => {
     event.preventDefault()
@@ -36,21 +45,21 @@ busca.addEventListener('submit', async (event) => {
     }
 })
 
-function showInfo(json: any) {
+function showInfo(json: WeatherInfo) {
   
     showWarning('')
 
-   let titulo = document.querySelector('.titulo') as HTMLInputElement
+   let titulo = document.querySelector('.titulo') as HTMLElement
    titulo.innerHTML = `${json.name}, ${json.country}`
-   let tempInfo = document.querySelector('.tempInfo') as HTMLInputElement
+   let tempInfo = document.querySelector('.tempInfo') as HTMLElement
    tempInfo.innerHTML = `${json.temp} <sup>°C</sup>`
-   let ventoInfo = document.querySelector('.ventoInfo') as HTMLInputElement 
+   let ventoInfo = document.querySelector('.ventoInfo') as HTMLElement 
    ventoInfo.innerHTML = `${json.windSpeed} <span>km/h</span>`
    
-   let img = document.querySelector('.temp img') as HTMLInputElement 
+   let img = document.querySelector('.temp img') as HTMLImageElement 
    img.setAttribute('src', `http://openweathermap.org/img/wn/${json.tempIcon}.png`)
    
-   let ventoPonto = document.querySelector('.ventoPonto') as HTMLInputElement
+   let ventoPonto = document.querySelector('.ventoPonto') as HTMLElement
    ventoPonto.style.transform = `rotate(${json.windAngle -90}deg)`
 
    resultado.classList.remove('hidden')
