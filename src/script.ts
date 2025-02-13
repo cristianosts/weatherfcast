@@ -4,7 +4,7 @@ interface WeatherInfo {
     temp: number;
     tempIcon: string;
     windSpeed: number;
-    windAngle: number;
+    windAngle: number; 
 }
 
 let busca = document.querySelector('.busca') as HTMLInputElement 
