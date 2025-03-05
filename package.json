@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "@tailwindcss/vite": "^4.0.10",
     "autoprefixer": "^0.8.20131213",
+    "tailwind": "^4.0.0",
     "tailwindcss": "^0.7.4"
   }
 }
