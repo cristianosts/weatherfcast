@@ -1,14 +1,5 @@
 {
 
-    "name": "weatherfcast",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-      "dev": "run dev",
-      "build": "run build",
-      "start": "run start"
-    },
-    
     "devDependencies": {
       "@types/node": "^20",
      
